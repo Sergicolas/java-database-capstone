@@ -6,26 +6,16 @@
   <meta charset="UTF-8">
   <title>Doctor Dashboard</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />
 
-  <!-- Stylesheets -->
   <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
   <link rel="stylesheet" th:href="@{/assets/css/doctorDashboard.css}">
   <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 
-  <!-- Utility & Render Scripts -->
   <script th:src="@{/js/render.js}" defer></script>
   <script th:src="@{/js/util.js}" defer></script>
-
-  <!-- Component Scripts -->
   <script th:src="@{/js/components/header.js}" defer></script>
   <script th:src="@{/js/components/footer.js}" defer></script>
-  <script th:src="@{/js/components/patientRows.js}" defer></script>
-
-  <!-- Service Scripts -->
-  <script type="module" th:src="@{/js/services/patientServices.js}" defer></script>
-  <script type="module" th:src="@{/js/doctorDashboard.js}" defer></script>
 </head>
 
 <body>
@@ -33,27 +23,17 @@
   <div class="container">
     <div class="wrapper">
 
-      <!-- Header Placeholder -->
       <div id="header"></div>
 
-      <!-- Main Content -->
       <main class="main-content">
 
-        <!-- Search Bar -->
-        <input
-          type="text"
-          id="searchBar"
-          class="searchBar input-field"
-          placeholder="Search by patient name"
-        />
+        <input type="text" id="searchBar" class="searchBar input-field" placeholder="Search by patient name" />
 
-        <!-- Filters -->
         <div class="filters">
           <button id="todayButton" class="today-btn">Today's Appointments</button>
           <input type="date" id="datePicker" class="date-picker" />
         </div>
 
-        <!-- Patient Records Table -->
         <table id="patientTable">
           <thead>
             <tr>
@@ -64,18 +44,22 @@
               <th>Prescription</th>
             </tr>
           </thead>
-          <tbody id="patientTableBody">
-            <!-- Dynamically populated -->
-          </tbody>
+          <tbody id="patientTableBody"></tbody>
         </table>
 
       </main>
 
-      <!-- Footer Placeholder -->
       <div id="footer"></div>
 
     </div>
   </div>
+
+  <script type="module">
+    import { openModal } from '/js/components/modals.js';
+    window.openModal = openModal;
+  </script>
+
+  <script type="module" th:src="@{/js/doctorDashboard.js}"></script>
 
 </body>
 

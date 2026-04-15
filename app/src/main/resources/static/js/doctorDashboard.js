@@ -33,11 +33,14 @@ document.getElementById("datePicker").addEventListener("change", (e) => {
 // Load and render appointments
 async function loadAppointments() {
   try {
-    const appointments = await getAllAppointments(selectedDate, patientName, token);
+    const data = await getAllAppointments(selectedDate, patientName || "null", token);
+    
+    // Extrai o array de appointments do objeto
+    const appointments = data.appointments || [];
 
     tableBody.innerHTML = "";
 
-    if (!appointments || appointments.length === 0) {
+    if (appointments.length === 0) {
       tableBody.innerHTML = `
         <tr>
           <td colspan="5" class="noPatientRecord">No Appointments found for today.</td>
