@@ -1,65 +1,47 @@
-<!-- index.html -->
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Smart Clinic — Select Role</title>
-
-  <!-- Favicon -->
-  <link rel="icon" href="../assets/images/logo/Logo.png" type="image/png" />
-
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="../assets/css/index.css">
-  <link rel="stylesheet" href="../assets/css/style.css">
-
-  <!-- Utility & Render Scripts -->
-  <script src="../js/util.js" defer></script>
-  <script src="../js/render.js" defer></script>
-
-  <!-- Component Scripts -->
-  <script src="../js/components/header.js" defer></script>
-  <script src="../js/components/footer.js" defer></script>
-</head>
-
-<body>
-
-  <div class="container">
-    <div class="wrapper">
-
-      <!-- Header Placeholder -->
-      <div id="header"></div>
-
-      <!-- Main Content -->
-      <main class="main-content">
-
-        <h2>Select Your Role</h2>
-
-        <div class="role-buttons">
-          <button id="adminBtn" onclick="selectRole('admin')">Admin</button>
-          <button id="doctorBtn" onclick="selectRole('doctor')">Doctor</button>
-          <button id="patientBtn" onclick="selectRole('patient')">Patient</button>
-        </div>
-
-      </main>
-
-      <!-- Footer Placeholder -->
-      <div id="footer"></div>
-
+    <meta charset="UTF-8">
+    <title>Smart Clinic — Select Role</title>
+  
+    <link rel="icon" href="./assets/images/logo/Logo.png" type="image/png" />
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+  
+    <!-- Expõe openModal globalmente ANTES do render.js -->
+    <script type="module">
+      import { openModal } from './js/components/modals.js';
+      window.openModal = openModal;
+    </script>
+  
+    <script src="./js/util.js" defer></script>
+    <script src="./js/render.js" defer></script>
+    <script src="./js/components/header.js" defer></script>
+    <script src="./js/components/footer.js" defer></script>
+  </head>
+  
+  <body>
+    <div class="container">
+      <div class="wrapper">
+        <div id="header"></div>
+  
+        <main class="main-content">
+          <h2>Select Your Role</h2>
+          <div class="role-buttons">
+            <button id="adminBtn" onclick="selectRole('admin')">Admin</button>
+            <button id="doctorBtn" onclick="selectRole('doctor')">Doctor</button>
+            <button id="patientBtn" onclick="selectRole('patient')">Patient</button>
+          </div>
+        </main>
+  
+        <div id="footer"></div>
+      </div>
     </div>
-  </div>
-
-  <!-- Modal (hidden by default) -->
-  <div id="modal" class="modal" style="display: none;">
-    <div class="modal-content">
-      <button id="closeModal">&times;</button>
-      <div id="modal-body"></div>
+  
+    <div id="modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <button id="closeModal">&times;</button>
+        <div id="modal-body"></div>
+      </div>
     </div>
-  </div>
-
-  <!-- Page-Specific Logic -->
-  <script type="module" src="../js/services/index.js" defer></script>
-
-</body>
-
-</html>
+  
+    <script type="module" src="./js/services/index.js"></script>
+  </body>

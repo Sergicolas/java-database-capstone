@@ -6,18 +6,13 @@
   <meta charset="UTF-8">
   <title>Admin Dashboard</title>
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" th:href="@{/assets/images/logo/logo.png}" />
 
-  <!-- Stylesheets -->
   <link rel="stylesheet" th:href="@{/assets/css/adminDashboard.css}">
   <link rel="stylesheet" th:href="@{/assets/css/style.css}">
 
-  <!-- Utility & Render Scripts -->
   <script th:src="@{/js/render.js}" defer></script>
   <script th:src="@{/js/util.js}" defer></script>
-
-  <!-- Component Scripts -->
   <script th:src="@{/js/components/header.js}" defer></script>
   <script th:src="@{/js/components/footer.js}" defer></script>
 </head>
@@ -27,21 +22,12 @@
   <div class="container">
     <div class="wrapper">
 
-      <!-- Header Placeholder -->
       <div id="header"></div>
 
-      <!-- Main Content -->
       <main class="main-content">
 
-        <!-- Search Bar -->
-        <input
-          type="text"
-          id="searchBar"
-          class="input-field"
-          placeholder="Search by doctor name"
-        />
+        <input type="text" id="searchBar" class="input-field" placeholder="Search by doctor name" />
 
-        <!-- Filters -->
         <div class="filters">
           <select id="timeFilter" class="select-dropdown">
             <option value="">Filter by Time</option>
@@ -52,4 +38,31 @@
           <select id="specialtyFilter" class="select-dropdown">
             <option value="">Filter by Specialty</option>
             <option value="Cardiologist">Cardiologist</option>
-            <option va
+            <option value="Neurologist">Neurologist</option>
+            <option value="Orthopedist">Orthopedist</option>
+            <option value="Pediatrician">Pediatrician</option>
+            <option value="Dermatologist">Dermatologist</option>
+            <option value="Dentist">Dentist</option>
+          </select>
+        </div>
+
+        <div id="content"></div>
+
+      </main>
+
+      <div id="footer"></div>
+
+    </div>
+  </div>
+
+  <div id="modal" class="modal" style="display: none;">
+    <span id="closeModal" class="close">&times;</span>
+    <div id="modal-body"></div>
+  </div>
+
+  <script type="module" th:src="@{/js/services/adminDashboard.js}" defer></script>
+  <script type="module" th:src="@{/js/components/doctorCard.js}" defer></script>
+
+</body>
+
+</html>
