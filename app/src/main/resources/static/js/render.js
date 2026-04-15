@@ -20,3 +20,15 @@ function selectRole(role) {
       window.location.href = "/pages/loggedPatientDashboard.html";
     }
   }
+
+  function renderContent() {
+    const role = getRole();
+    if (!role) {
+      window.location.href = "/";
+      return;
+    }
+  }
+  
+  
+  window.renderContent = renderContent;
+  window.selectRole = selectRole;

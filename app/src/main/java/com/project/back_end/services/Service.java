@@ -145,7 +145,7 @@ public class Service {
     public ResponseEntity<Map<String, String>> validatePatientLogin(Login login) {
         Map<String, String> response = new HashMap<>();
         try {
-            Patient patient = patientRepository.findByEmail(login.getIdentifier());
+            Patient patient = patientRepository.findByEmail(login.getEmail());
             if (patient == null) {
                 response.put("message", "Patient not found.");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
