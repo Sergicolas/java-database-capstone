@@ -104,4 +104,42 @@ public class DoctorController {
                     .body(Map.of("message", "Doctor not found"));
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(Map.of("message", "Some internal er
+                    .body(Map.of("message", "Some internal error occurred"));
+        }
+    }
+
+    // Delete a doctor
+    @DeleteMapping("/{id}/{token}")
+    public ResponseEntity<Map<String, String>> deleteDoctor(
+            @PathVariable long id,
+            @PathVariable String token) {
+
+        Map<String, Object> validation = service.validateToken(token, "admin");
+        if (!validation.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("message", "Unauthorized."));
+        }
+
+        int result = doctorService.deleteDoctor(id);
+        if (result == 1) {
+            return ResponseEntity.ok(Map.of("message", "Doctor deleted successfully"));
+        } else if (result == -1) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(Map.of("message", "Doctor not found with id"));
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("message", "Some internal error occurred"));
+        }
+    }
+
+    // Filter doctors
+    @GetMapping("/filter/{name}/{time}/{speciality}")
+    public ResponseEntity<Map<String, Object>> filter(
+            @PathVariable String name,
+            @PathVariable String time,
+            @PathVariable String speciality) {
+
+        Map<String, Object> result = service.filterDoctor(name, speciality, time);
+        return ResponseEntity.ok(result);
+    }
+}
