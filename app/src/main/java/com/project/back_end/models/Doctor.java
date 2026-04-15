@@ -34,7 +34,7 @@ public class Doctor {
 
     private boolean available = true;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     private List<String> availableTimes;
 
     // Getters and Setters
